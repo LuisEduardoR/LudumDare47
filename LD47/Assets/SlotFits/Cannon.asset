@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5216b66892af877409d7b4249ab6588a, type: 3}
+  m_Name: Cannon
+  m_EditorClassIdentifier: 
+  id: cannon
+  cost: 50
+  prefab: {fileID: 1194871689422679646, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
