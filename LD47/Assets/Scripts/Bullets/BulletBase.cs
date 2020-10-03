@@ -31,9 +31,9 @@ public class BulletBase : MonoBehaviour
 
     }
 
-    protected void OnTriggerEnter2D(Collider2D other) {
+    protected void OnCollisionEnter2D(Collision2D other) {
 
-        IEntity entity = other.GetComponent<IEntity>();
+        IEntity entity = other.gameObject.GetComponent<IEntity>();
         if(entity != null)
             entity.Damage(damage);
 

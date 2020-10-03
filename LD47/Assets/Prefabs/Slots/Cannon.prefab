@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5434018669154655888}
   - component: {fileID: 8975782418052183512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8397669258614022631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5164526906261891252}
   - component: {fileID: 4991880387408266680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7575337427161564659}
   - component: {fileID: 7016522264840291060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8667564416224808865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3783444822142542939}
   - component: {fileID: 4658693966930761082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}

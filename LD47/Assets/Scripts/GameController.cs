@@ -26,14 +26,19 @@ public class GameController : MonoBehaviour
         [Tooltip("UI for the main menu")]
         public GameObject mainMenu;
 
+        [Tooltip("UI for the gameplay")]
+        public GameObject gameplay;
+
         // Updates the state of the UI based on GameState.
         public void Update(GameState state) {
 
             mainMenu.SetActive(state == GameState.MainMenu);
+            gameplay.SetActive(state == GameState.Gameplay);
 
         }
 
     }
+    [Header("UI")]
     public UI ui;
 
     [System.Serializable]
@@ -42,7 +47,9 @@ public class GameController : MonoBehaviour
         public string slotFitId;
         public float health;
 
-    }    
+    }
+
+    [Header("Cars & Slots")]    
 
     [Tooltip("Prefab for the main car")]
     public GameObject mainCarPrefab;
@@ -57,6 +64,11 @@ public class GameController : MonoBehaviour
     // TODO: make private after tests.
     public List<AdditionalCar> additionalCars;
     protected Dictionary<string, SlotFitInfo> slotDictionary;
+
+    [Header("Waves")]
+
+    [Tooltip("Assign each level waves (in order)")]
+    public List<LevelWaves> levels;
 
     void Start()
     {
@@ -84,6 +96,7 @@ public class GameController : MonoBehaviour
         }
 
         currentState = GameState.MainMenu;
+        ui.Update(currentState);
 
         ResetGame();
 
@@ -123,8 +136,14 @@ public class GameController : MonoBehaviour
     public void StartLevel() {
 
         CreateTrain();
+
         currentState = GameState.Gameplay;
         ui.Update(currentState);
+        
+        // Initializes the enemy spawner.
+        EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
+        // TODO: multiple levels
+        spawner.Initialize(levels[0]);
 
     }
 

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5434018669154655888}
   - component: {fileID: 4096252158327666168}
   - component: {fileID: 5339021755165652406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.225}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8397669258614022631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5349587686201477224}
   - component: {fileID: 8898660578228137062}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: get
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6313126316203807312}
   - component: {fileID: 8773877785460106936}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: g_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8667564416224808865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

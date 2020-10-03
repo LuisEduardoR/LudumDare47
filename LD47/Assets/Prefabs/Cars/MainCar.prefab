@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 206280550}
   - component: {fileID: 206280549}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409376619287959359}
   - component: {fileID: 4454259192879096791}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: g_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,9 +176,9 @@ GameObject:
   - component: {fileID: 1115244877313219583}
   - component: {fileID: 3867739097734352468}
   - component: {fileID: 7755865129915676366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainCar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   health: 100
   slot: {fileID: 3276340556780597432}
   slotSpawn: {fileID: 6322040698299588740}
-  angularAcceleration: 180
+  angularAcceleration: 480
   angularDesacceleration: 90
   angularVelocity: 0
   maxAngularVelocity: 180
@@ -234,7 +234,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.225}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2941559494067585793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6322040698299588740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,6 +322,14 @@ PrefabInstance:
     - target: {fileID: 1194871689422679646, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
       propertyPath: m_Name
       value: Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194871689422679646, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214075916111928306, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5434018669154655888, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,6 +374,22 @@ PrefabInstance:
     - target: {fileID: 5434018669154655888, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857657844230887268, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216967763773626115, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868024549148102838, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318998393514203774, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}

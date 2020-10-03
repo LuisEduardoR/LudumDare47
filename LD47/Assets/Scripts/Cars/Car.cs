@@ -82,6 +82,18 @@ public class Car : LoopTransform, IEntity
 
     public void OnUpdateHealth() {
 
+        // Destroys the car and the cars following it if health reaches 0.
+        if(Health <= 0.0f) {
+
+            // Kills the next car.
+            if(nextCar != null)
+                nextCar.Damage(nextCar.Health);
+
+            // Destroy this car.
+            Destroy(gameObject);
+
+        }
+
     }
 
 }
