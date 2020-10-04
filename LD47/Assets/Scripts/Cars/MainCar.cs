@@ -43,4 +43,11 @@ public class MainCar : Car
 
     }
 
+    public override void Die() {
+
+        GameController.Instance.LoseGame();
+        base.Die();
+
+    }
+
 }

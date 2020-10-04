@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 using TMPro;
 
+using System.Collections;
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
@@ -25,20 +26,44 @@ public class GameController : MonoBehaviour
     [System.Serializable]
     public class UI {
 
-        [Tooltip("UI for the main menu")]
-        public GameObject mainMenu;
+        [Tooltip("Main menu's script")]
+        public MainMenu mainMenu;
 
         [Tooltip("UI for the gameplay")]
         public GameObject gameplay;
-
         public TMP_Text pointsText;
         public TMP_Text moneyText;
+
+        [Tooltip("Pause menu's script")]
+        public PauseMenu pauseMenu;
+
+        [Tooltip("Lose menu's script")]
+        public LoseMenu loseMenu;
+
 
         // Updates the state of the UI based on GameState.
         public void Update(GameState state) {
 
-            mainMenu.SetActive(state == GameState.MainMenu);
+            // Sets the main menu UI.
+            if (state == GameState.MainMenu) 
+                mainMenu.Show();
+            else
+                mainMenu.Hide();
+
+            // Sets the gameplay UI.
             gameplay.SetActive(state == GameState.Gameplay);
+
+            // Sets the pause menu UI.
+            if (state == GameState.Paused) 
+                pauseMenu.Show();
+            else
+                pauseMenu.Hide();
+
+            // Sets the lose menu UI.
+            if (state == GameState.Lose) 
+                loseMenu.Show();
+            else
+                loseMenu.Hide();
 
         }
 
@@ -48,6 +73,10 @@ public class GameController : MonoBehaviour
 
         public void UpdateMoney(int value) {
             moneyText.text = value.ToString();
+        }
+
+        public void UpdateFinalStats(int points, int money) {
+            loseMenu.UpdateFinalStats(points, money);
         }
 
     }
@@ -108,7 +137,7 @@ public class GameController : MonoBehaviour
         
         // Creates the singleton.
         if(Instance != null)
-            Debug.LogError("More than one instance of singleton found!");
+            Debug.LogWarning("More than one instance of singleton found!");
         else
             instance = this;
 
@@ -117,6 +146,9 @@ public class GameController : MonoBehaviour
 
         // Assigns the function to be called when laoding a scene.
         SceneManager.sceneLoaded += OnLoadScene;
+
+        // Resets time.
+        Time.timeScale = 1;
 
         // Creates the dictionary for slot fits.
         slotDictionary = new Dictionary<string, SlotFitInfo>();
@@ -146,6 +178,10 @@ public class GameController : MonoBehaviour
             case "Gameplay":
                 StartLevel();
                 break;
+            case "MainMenu":
+                SceneManager.sceneLoaded -= OnLoadScene;
+                Destroy(gameObject);
+                break;
         }
 
     }
@@ -162,12 +198,6 @@ public class GameController : MonoBehaviour
     // Loads a new scene.
     public void LoadScene(string sceneName) {
         SceneManager.LoadSceneAsync(sceneName);
-    }
-
-    // Quits the game.
-    public void QuitGame() {
-        Debug.Log("Application.Quit()");
-        Application.Quit();
     }
 
     // Starts a gameplay level.
@@ -223,6 +253,47 @@ public class GameController : MonoBehaviour
             previousCarScript = currentCarScript;
 
         }
+
+    }
+
+    public void TogglePause() {
+
+        // Pauses or unpauses the game.
+        if(currentState == GameState.Gameplay)
+            currentState = GameState.Paused;
+        else if(currentState == GameState.Paused)
+            currentState = GameState.Gameplay;
+        else
+            return;
+
+        Time.timeScale = (currentState == GameState.Paused) ? 0 : 1;
+        ui.Update(currentState);
+
+    }
+
+    public void LoseGame() {
+
+        // Loses the game.
+        currentState = GameState.Lose;
+        ui.gameplay.SetActive(false);
+        StartCoroutine(LosingGame());
+
+    }
+
+    protected IEnumerator LosingGame() {
+
+        // Waits for some time before displaying the scree.
+        yield return new WaitForSeconds(2.5f);
+
+        DisplayLoseScreen();
+
+    }
+
+    protected void DisplayLoseScreen() {
+
+        Time.timeScale = 0;
+        ui.UpdateFinalStats(Points, Money);
+        ui.Update(currentState);
 
     }
 

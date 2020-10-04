@@ -18,6 +18,12 @@ public class BaseEnemy : MonoBehaviour, IEntity
 
     [SerializeField] protected int killValue = 100;
 
+    [Tooltip("Prefab instantiated when this enemy dies")]
+    [SerializeField] protected GameObject deathEffect = null;
+
+    // Used to prevent "double death"
+    protected bool dead;
+
     [SerializeField] protected float collisionDamage = 15.0f;
 
     [Header("Movement")]
@@ -46,7 +52,7 @@ public class BaseEnemy : MonoBehaviour, IEntity
 
     public virtual void OnUpdateHealth() {
 
-        if(Health <= 0.0f) {
+        if(Health <= 0.0f && !dead) {
             Die();
             return;
         }
@@ -54,11 +60,16 @@ public class BaseEnemy : MonoBehaviour, IEntity
     }
 
     public virtual void Die() {
+
+        dead = true;
         
         // Gives points and money.
         GameController.Instance.Points += killValue;
         GameController.Instance.Money += (killValue / 10);
 
+        // Instantiates the death effect ands destroys this object
+        if(deathEffect != null)
+            Instantiate(deathEffect, transform.position, transform.rotation);
         Destroy(gameObject);
 
     }

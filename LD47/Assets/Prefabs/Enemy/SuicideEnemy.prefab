@@ -86,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   killValue: 100
+  deathEffect: {fileID: 8309959938779204406, guid: 430ef12d41f281c44a2625a9a30a9c56, type: 3}
   collisionDamage: 25
   velocity: 3
   enemyAnimator: {fileID: 4743675043459107598}

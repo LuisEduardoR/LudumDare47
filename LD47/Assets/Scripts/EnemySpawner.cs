@@ -12,6 +12,13 @@ public class EnemySpawner : MonoBehaviour
     protected float waveTimer;
 
 
+    [Tooltip("Distance away from the center the enemies will spawn.")]
+    [SerializeField] protected float spawnDistance = 7.5f;
+
+
+    [Tooltip("Height difference from the center the enemies will spawn.")]
+    [SerializeField] protected float spawnHeightDifference = 2.5f;
+
     protected void Awake() {
 
         started = false;
@@ -41,7 +48,8 @@ public class EnemySpawner : MonoBehaviour
                 if(currentWave >= levelWaves.waves.Count) {
 
                     // TODO: win the level when out of enemies
-                    Debug.LogWarning("Level won!");
+                    Debug.LogWarning("Level won! Resetting...");
+                    currentWave = -1;
                     return;
                     
                 }
@@ -81,8 +89,14 @@ public class EnemySpawner : MonoBehaviour
 
     protected void SpawnEnemy(Wave wave, int current) {
 
-        // TODO: random positions.
-        Instantiate(wave.enemies[current], new Vector3(5.0f, 0.0f), new Quaternion());
+        // Random position for the enemy to spawn.
+        Vector2 randomPos = Vector2.zero;
+        // Gets a random side.
+        randomPos.x = spawnDistance * ((Random.Range(0, 2) == 0) ? 1 : -1);
+        // Gets a random height.
+        randomPos.y = spawnHeightDifference * Random.value * ((Random.Range(0, 2) == 0) ? 1 : -1);
+
+        Instantiate(wave.enemies[current], randomPos, new Quaternion());
 
     }
 

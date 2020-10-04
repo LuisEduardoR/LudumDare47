@@ -26,6 +26,9 @@ public class Car : LoopTransform, IEntity
     [Tooltip("SpriteRenderer that represents the filled color of the health bar")]
     public SpriteRenderer healthBarFill;
 
+    [Tooltip("Prefab instantiated when this enemy dies")]
+    [SerializeField] protected GameObject deathEffect = null;
+
     [Header("Slot")]
     public Slot slot;
 
@@ -96,14 +99,16 @@ public class Car : LoopTransform, IEntity
     }
 
     // Destroys the car and the cars following it if health reaches 0.
-    public void Die() {
+    public virtual void Die() {
 
         // Kills the next car.
-            if(nextCar != null)
-                nextCar.Damage(nextCar.Health);
+        if(nextCar != null)
+            nextCar.Damage(nextCar.Health);
 
-            // Destroy this car.
-            Destroy(gameObject);
+        // Instantiates the death effect ands destroys this object
+        if(deathEffect != null)
+            Instantiate(deathEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
 
     }
 

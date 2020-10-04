@@ -137,6 +137,7 @@ MonoBehaviour:
   followAngle: 16.5
   health: 100
   healthBarFill: {fileID: 1534067556646761926}
+  deathEffect: {fileID: 8309959938779204406, guid: 430ef12d41f281c44a2625a9a30a9c56, type: 3}
   slot: {fileID: 0}
   slotSpawn: {fileID: 8667564416224808865}
 --- !u!61 &5339021755165652406
