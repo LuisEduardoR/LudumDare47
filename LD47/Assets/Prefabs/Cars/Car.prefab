@@ -131,11 +131,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 180
   radius: 3
-  center: {x: -0.1, y: 0.25}
+  center: {x: 0, y: 0}
   nextCar: {fileID: 0}
   previousCar: {fileID: 0}
   followAngle: 16.5
   health: 100
+  damageEffectDuration: 0.2
   healthBarFill: {fileID: 1534067556646761926}
   deathEffect: {fileID: 8309959938779204406, guid: 430ef12d41f281c44a2625a9a30a9c56, type: 3}
   slot: {fileID: 0}

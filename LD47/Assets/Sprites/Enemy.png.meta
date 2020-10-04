@@ -7,9 +7,30 @@ TextureImporter:
     second: Rotor
   - first:
       213: -7642239419928554605
-    second: Enemy_Head
+    second: Enemy_Head_Fast
   - first:
       213: -3876759189950653258
+    second: Enemy_Body_Fast
+  - first:
+      213: -9017530102755907373
+    second: Enemy_0
+  - first:
+      213: -173132265729400916
+    second: Enemy_1
+  - first:
+      213: 7659652339204355396
+    second: Enemy_2
+  - first:
+      213: -5720429097031363069
+    second: Enemy_Head_Strong
+  - first:
+      213: -7911572535675539837
+    second: Enemy_Body_Strong
+  - first:
+      213: 5398807837072792716
+    second: Enemy_Head
+  - first:
+      213: -3763824636803078212
     second: Enemy_Body
   externalObjects: {}
   serializedVersion: 11
@@ -114,18 +135,102 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 38
+        y: 146
         width: 63
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28f241131c66d4770800000000000000
+      spriteID: 3d8a7d1062c4bd280800000000000000
       internalID: 8596640243658272642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Head_Fast
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 58
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf5a022f19e89df0800000000000000
+      internalID: -7642239419928554605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Body_Fast
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 58
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445f34d483d8c4a60800000000000000
+      internalID: -3876759189950653258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Head_Strong
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 36
+        width: 58
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30613ac5b04fc90b0800000000000000
+      internalID: -5720429097031363069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Body_Strong
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 36
+        width: 58
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ea25432b2743290800000000000000
+      internalID: -7911572535675539837
       vertices: []
       indices: 
       edges: []
@@ -135,18 +240,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 0
+        y: 72
         width: 58
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 393dba6ecbf41f590800000000000000
-      internalID: -7642239419928554605
+      spriteID: c8c915baf1b6cea40800000000000000
+      internalID: 5398807837072792716
       vertices: []
       indices: 
       edges: []
@@ -156,18 +261,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 67
-        y: 0
+        y: 72
         width: 58
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bc92438e0cf23ac0800000000000000
-      internalID: -3876759189950653258
+      spriteID: cb72d763f6534cbc0800000000000000
+      internalID: -3763824636803078212
       vertices: []
       indices: 
       edges: []

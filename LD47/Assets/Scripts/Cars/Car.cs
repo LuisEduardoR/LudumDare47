@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using System.Collections;
+
 public class Car : LoopTransform, IEntity
 {
 
@@ -22,6 +24,8 @@ public class Car : LoopTransform, IEntity
             OnUpdateHealth();
         }
     }
+
+    [SerializeField] protected float damageEffectDuration = 0.2f;
 
     [Tooltip("SpriteRenderer that represents the filled color of the health bar")]
     public SpriteRenderer healthBarFill;
@@ -86,6 +90,34 @@ public class Car : LoopTransform, IEntity
 
         Health -= amount;
         OnUpdateHealth();
+        StartCoroutine(DamageEffect());
+
+    }
+
+    IEnumerator DamageEffect() {
+
+        // Gets the necessary SpriteRenderers.
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // Colors red.
+        for(int i = 0; i < renderers.Length; i++) {
+            if(renderers[i].color == Color.white)
+                renderers[i].color = Color.red;
+            else
+                renderers[i] = null;
+        }
+
+        // Waits for delay.
+        float time = 0.0f;
+        while(time < damageEffectDuration) {
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        // Colors white.
+        foreach(SpriteRenderer render in renderers)
+            if(render != null)
+                render.color = Color.white;
 
     }
 

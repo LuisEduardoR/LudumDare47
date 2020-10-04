@@ -282,8 +282,8 @@ public class GameController : MonoBehaviour
 
         // Initializes the enemy spawner.
         EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
-        // TODO: multiple levels (currentLevel - 1)
-        spawner.Initialize(levels[0]);
+        int currentLevelWave = Mathf.Clamp(currentLevel - 1, 0, levels.Count - 1);
+        spawner.Initialize(levels[currentLevelWave]);
 
     }
 

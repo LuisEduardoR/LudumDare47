@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using System.Collections;
+
 [RequireComponent(typeof(Collider2D))]
 public class BaseEnemy : MonoBehaviour, IEntity
 {
@@ -17,6 +19,8 @@ public class BaseEnemy : MonoBehaviour, IEntity
     }
 
     [SerializeField] protected int killValue = 100;
+
+    [SerializeField] protected float damageEffectDuration = 0.2f;
 
     [Tooltip("Prefab instantiated when this enemy dies")]
     [SerializeField] protected GameObject deathEffect = null;
@@ -46,6 +50,7 @@ public class BaseEnemy : MonoBehaviour, IEntity
     public virtual void Damage(float amount) {
 
         Health -= amount;
+        StartCoroutine(DamageEffect());
         OnUpdateHealth();
 
     }
@@ -56,6 +61,28 @@ public class BaseEnemy : MonoBehaviour, IEntity
             Die();
             return;
         }
+
+    }
+
+    IEnumerator DamageEffect() {
+
+        // Gets the necessary SpriteRenderers.
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // Colors red.
+        foreach(SpriteRenderer render in renderers)
+            render.color = Color.red;
+
+        // Waits for delay.
+        float time = 0.0f;
+        while(time < damageEffectDuration) {
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        // Colors white.
+        foreach(SpriteRenderer render in renderers)
+            render.color = Color.white;
 
     }
 

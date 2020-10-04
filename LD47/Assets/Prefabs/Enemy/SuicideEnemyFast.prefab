@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3321993381230138799}
   - component: {fileID: 4743675043459107598}
   m_Layer: 0
-  m_Name: SuicideEnemy
+  m_Name: SuicideEnemyFast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,12 +84,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b885ced59aace4080a2de99f8d7d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 25
   killValue: 100
   damageEffectDuration: 0.2
   deathEffect: {fileID: 8309959938779204406, guid: 430ef12d41f281c44a2625a9a30a9c56, type: 3}
   collisionDamage: 25
-  velocity: 3
+  velocity: 5
   enemyAnimator: {fileID: 4743675043459107598}
 --- !u!95 &4743675043459107598
 Animator:
@@ -213,7 +213,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 5398807837072792716, guid: 6552bc0cc66bae741a5fcf43c47fda7d, type: 3}
+  m_Sprite: {fileID: -7642239419928554605, guid: 6552bc0cc66bae741a5fcf43c47fda7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
