@@ -15,10 +15,18 @@ MonoBehaviour:
   scalingDifficulty: 0
   scalingDifficultyModifier: 0.05
   waves:
-  - {fileID: 11400000, guid: 63261f466732fdc4c8cbcb5a7331ffa2, type: 2}
-  - {fileID: 11400000, guid: 63261f466732fdc4c8cbcb5a7331ffa2, type: 2}
-  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
-  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 3f9eb77908090b2418928facdab7eea9, type: 2}
   - {fileID: 11400000, guid: 3f9eb77908090b2418928facdab7eea9, type: 2}
   - {fileID: 11400000, guid: 63261f466732fdc4c8cbcb5a7331ffa2, type: 2}
+  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 5c301881e9d3ac0489fca23417e4d23b, type: 2}
+  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 9d13e1de2f5cbc44fbe2a9acc1202e27, type: 2}
+  - {fileID: 11400000, guid: 5c301881e9d3ac0489fca23417e4d23b, type: 2}
+  - {fileID: 11400000, guid: 9d13e1de2f5cbc44fbe2a9acc1202e27, type: 2}
+  - {fileID: 11400000, guid: 5c301881e9d3ac0489fca23417e4d23b, type: 2}
+  - {fileID: 11400000, guid: 9d13e1de2f5cbc44fbe2a9acc1202e27, type: 2}
+  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 9d13e1de2f5cbc44fbe2a9acc1202e27, type: 2}
   - {fileID: 11400000, guid: 9d13e1de2f5cbc44fbe2a9acc1202e27, type: 2}

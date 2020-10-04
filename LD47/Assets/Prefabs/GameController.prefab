@@ -3936,9 +3936,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6f16387076a9e34898f74965a1993f0, type: 2}
   - {fileID: 11400000, guid: 3afc701adc473be4681795e6a9481f71, type: 2}
   - {fileID: 11400000, guid: 67859e24a1e7b99478ab7e5cbfe98036, type: 2}
-  - {fileID: 11400000, guid: 83444d9061a0d3e4183283627d4bb665, type: 2}
-  - {fileID: 11400000, guid: 248afa5e9493c354d82110ada26717a4, type: 2}
-  - {fileID: 11400000, guid: 72253b826b6113643a68c8822d505492, type: 2}
+  - {fileID: 11400000, guid: 3b77b5c2b6db5ef4daa39572f8e5334e, type: 2}
+  - {fileID: 11400000, guid: e014515e92c73054e8ef1b1d77974955, type: 2}
+  - {fileID: 11400000, guid: e3385b14e8fe05d458768542deead427, type: 2}
   points: 0
   money: 0
 --- !u!82 &513484610
