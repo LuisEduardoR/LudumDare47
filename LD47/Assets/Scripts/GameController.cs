@@ -43,6 +43,9 @@ public class GameController : MonoBehaviour
         [Tooltip("Win menu's script")]
         public WinMenu winMenu;
 
+        [Tooltip("Store menu's script")]
+        public StoreMenu storeMenu;
+
         // Updates the state of the UI based on GameState.
         public void Update(GameState state) {
 
@@ -73,6 +76,12 @@ public class GameController : MonoBehaviour
             else
                 winMenu.Hide();
 
+            // Sets the stpre menu UI.
+            if (state == GameState.Store) 
+                storeMenu.Show();
+            else
+                storeMenu.Hide();
+
         }
 
         public void UpdatePoints(int value) {
@@ -101,6 +110,11 @@ public class GameController : MonoBehaviour
         public string slotFitId;
         public float health;
 
+        public AdditionalCar(string slotFitId, float health) {
+            this.slotFitId = slotFitId;
+            this.health = health;
+        }
+
     }
 
     [Header("Cars & Slots")]    
@@ -114,9 +128,13 @@ public class GameController : MonoBehaviour
     [Tooltip("Slot gameobjects avaliable to be fitted on cars")]
     public List<SlotFitInfo> slotFits;
 
-    // Current additional cars.
+    // Current additional cars info.
     // TODO: make private after tests.
     public List<AdditionalCar> additionalCars;
+
+    // List of references to the cars used on the gameplay.
+    protected List<Car> gameplayCars;
+
     protected Dictionary<string, SlotFitInfo> slotDictionary;
 
     [Header("Waves")]
@@ -179,10 +197,6 @@ public class GameController : MonoBehaviour
         currentState = GameState.MainMenu;
         ui.Update(currentState);
 
-        // Initializes points and money.
-        Points = 0;
-        Money = 0;
-
         ResetGame();
 
     }
@@ -191,12 +205,15 @@ public class GameController : MonoBehaviour
     public void OnLoadScene(Scene scene, LoadSceneMode mode) {
 
         switch(scene.name) {
-            case "Gameplay":
-                StartLevel();
-                break;
             case "MainMenu":
                 SceneManager.sceneLoaded -= OnLoadScene;
                 Destroy(gameObject);
+                break;
+            case "Gameplay":
+                StartLevel();
+                break;
+            case "Store":
+                EnterStore();
                 break;
         }
 
@@ -205,11 +222,10 @@ public class GameController : MonoBehaviour
     // Resets the game to an initial state.
     public void ResetGame() {
 
-        // Resets the list of cars.
-        //additionalCars = new List<AdditionalCar>();
-        // TODO: reset cars at start of the game
-
+        // Resets level, points and money.
         currentLevel = 1;
+        Points = 0;
+        Money = 0;
 
     }
 
@@ -223,6 +239,8 @@ public class GameController : MonoBehaviour
 
         CreateTrain();
 
+        // Resets time and sets the UI.
+        Time.timeScale = 1;
         currentState = GameState.Gameplay;
         ui.Update(currentState);
         
@@ -232,7 +250,7 @@ public class GameController : MonoBehaviour
 
         // Initializes the enemy spawner.
         EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
-        // TODO: multiple levels
+        // TODO: multiple levels (currentLevel - 1)
         spawner.Initialize(levels[0]);
 
     }
@@ -240,17 +258,22 @@ public class GameController : MonoBehaviour
     // Creates the train.
     protected void CreateTrain() {
 
-        // Intantiates the main car.
+        // Initialzies the list of cars used on gameplay.
+        gameplayCars = new List<Car>();
+
+        // Intantiates the main car and adds it to the list.
         GameObject previousCar = Instantiate(mainCarPrefab, Vector3.zero, new Quaternion());
         Car previousCarScript = previousCar.GetComponent<Car>();
+        gameplayCars.Add(previousCarScript);
         previousCar.transform.name = "car_0";
 
         // Instantiates and fits the slots of the remaining cars.
         for(int i = 0; i < additionalCars.Count; i++) {
 
-            // Creates a new car.
+            // Creates a new car and adds it to the list.
             GameObject currentCar = Instantiate(additionalCarPrefab, Vector3.zero, new Quaternion());
             Car currentCarScript = currentCar.GetComponent<Car>();     
+            gameplayCars.Add(currentCarScript);
 
             // Assigns the order of cars on the train.
             currentCarScript.previousCar = previousCarScript;
@@ -345,7 +368,7 @@ public class GameController : MonoBehaviour
 
             // Checks if all enemies have been defeated.
             BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
-            if(enemies.Length <= 1) {
+            if(enemies.Length <= 0) {
                 ended = true;
                 won = true;
                 continue;
@@ -361,11 +384,38 @@ public class GameController : MonoBehaviour
 
     protected void DisplayWinScreen() {
 
+        // Updates game info.
         Time.timeScale = 0;
-        ui.UpdateWinScreenStats(oldPoints, Points, oldMoney, Money, currentLevel);
         currentState = GameState.Win;
-        ui.Update(currentState);
         currentLevel++;
+
+        // Saves info about the train when the game ended.
+        // Counts how many cars are alive.
+        int numCarsRemaining = 0;
+        List<string> slotIds = new List<string>(); // Stores the Ids of the slots.
+        for(int i = 1; i < gameplayCars.Count; i++) {
+            if(gameplayCars[i] != null && gameplayCars[i].Health > 0) {
+                numCarsRemaining++;
+                slotIds.Add(additionalCars[i - 1].slotFitId); // Gets the slot ID for this car on the old list.
+            } else // No need to continue, if a car is dead all remaining ones are too.
+                break;
+        }
+        // Resets additionalCars list with the new info.
+        additionalCars.Clear();
+        for(int i = 1; i <= numCarsRemaining; i++) {
+            additionalCars.Add(new AdditionalCar(slotIds[i - 1], gameplayCars[i].Health));
+        }
+
+        // Sets the UI.
+        ui.UpdateWinScreenStats(oldPoints, Points, oldMoney, Money, currentLevel);
+        ui.Update(currentState);
+
+    }
+
+    public void EnterStore() {
+
+        currentState = GameState.Store;
+        ui.Update(currentState);
 
     }
 
