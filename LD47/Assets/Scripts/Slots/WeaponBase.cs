@@ -14,6 +14,9 @@ public class WeaponBase : Slot
     [Tooltip("GameObject for the bullet")]
     public GameObject bulletPrefab;
 
+    [Tooltip("AudioSource to play the shooting sound.")]
+    public AudioSource shotAudio;
+
     protected void Awake() {
         currentDelay = 0.0f;
     }
@@ -32,6 +35,10 @@ public class WeaponBase : Slot
 
             // Instantiates the bullet.
             Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+
+            // Plays a sound if available.
+            if(shotAudio != null)
+                shotAudio.Play();
 
             // Resets the delay.
             currentDelay = delayToFire;

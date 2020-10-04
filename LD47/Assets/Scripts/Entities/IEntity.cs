@@ -7,4 +7,6 @@
 
     void OnUpdateHealth();
 
+    void Die();
+
 }

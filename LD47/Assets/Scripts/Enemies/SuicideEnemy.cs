@@ -3,6 +3,8 @@
 public class SuicideEnemy : BaseEnemy
 {
 
+    
+
     protected void Update()
     {
         Move();
@@ -19,8 +21,12 @@ public class SuicideEnemy : BaseEnemy
             return;
 
         // Moves towards the target.
-        Vector3 dir = (target.transform.position - transform.position).normalized;
-        transform.Translate(velocity * Time.deltaTime * dir);
+        Vector3 diff = target.transform.position - transform.position;
+        transform.Translate(velocity * Time.deltaTime * diff.normalized);
+
+        // Flips the enemy to face the target.
+        if(enemyAnimator != null)
+            enemyAnimator.SetBool("FlipX", (diff.x < 0));
 
     }
 

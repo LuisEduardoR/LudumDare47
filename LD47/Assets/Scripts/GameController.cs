@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using TMPro;
+
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
@@ -29,12 +31,23 @@ public class GameController : MonoBehaviour
         [Tooltip("UI for the gameplay")]
         public GameObject gameplay;
 
+        public TMP_Text pointsText;
+        public TMP_Text moneyText;
+
         // Updates the state of the UI based on GameState.
         public void Update(GameState state) {
 
             mainMenu.SetActive(state == GameState.MainMenu);
             gameplay.SetActive(state == GameState.Gameplay);
 
+        }
+
+        public void UpdatePoints(int value) {
+            pointsText.text = value.ToString().PadLeft(8, '0');
+        }
+
+        public void UpdateMoney(int value) {
+            moneyText.text = value.ToString();
         }
 
     }
@@ -70,6 +83,26 @@ public class GameController : MonoBehaviour
     [Tooltip("Assign each level waves (in order)")]
     public List<LevelWaves> levels;
 
+    [Header("Points & Money")]
+
+    [SerializeField] protected int points;
+    public int Points {
+        get { return points; }
+        set {
+            points = value;
+            ui.UpdatePoints(value);
+        }
+    }
+
+    [SerializeField] protected int money;
+    public int Money {
+        get { return money; }
+        set {
+            money = value;
+            ui.UpdateMoney(value);
+        }
+    }
+
     void Start()
     {
         
@@ -98,6 +131,10 @@ public class GameController : MonoBehaviour
         currentState = GameState.MainMenu;
         ui.Update(currentState);
 
+        // Initializes points and money.
+        Points = 0;
+        Money = 0;
+
         ResetGame();
 
     }
@@ -117,7 +154,8 @@ public class GameController : MonoBehaviour
     public void ResetGame() {
 
         // Resets the list of cars.
-        additionalCars = new List<AdditionalCar>();
+        //additionalCars = new List<AdditionalCar>();
+        // TODO: reset cars at start of the game
 
     }
 

@@ -3,7 +3,7 @@
 [RequireComponent(typeof(Collider2D))]
 public class BaseEnemy : MonoBehaviour, IEntity
 {
-    
+
     [Header("Health")]
     [SerializeField] protected float health = 100.0f;
     public virtual float Health {
@@ -16,10 +16,16 @@ public class BaseEnemy : MonoBehaviour, IEntity
         }
     }
 
+    [SerializeField] protected int killValue = 100;
+
     [SerializeField] protected float collisionDamage = 15.0f;
 
     [Header("Movement")]
     [SerializeField] protected float velocity = 2.0f;
+
+    [Header("Animation")]
+
+    [SerializeField] protected Animator enemyAnimator;
 
     // Used to store of a list of cars on the scene that can be used for targetting.
     protected Car[] targetCars;
@@ -41,8 +47,19 @@ public class BaseEnemy : MonoBehaviour, IEntity
     public virtual void OnUpdateHealth() {
 
         if(Health <= 0.0f) {
-            Destroy(gameObject);
+            Die();
+            return;
         }
+
+    }
+
+    public virtual void Die() {
+        
+        // Gives points and money.
+        GameController.Instance.Points += killValue;
+        GameController.Instance.Money += (killValue / 10);
+
+        Destroy(gameObject);
 
     }
 

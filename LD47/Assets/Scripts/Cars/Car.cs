@@ -23,6 +23,9 @@ public class Car : LoopTransform, IEntity
         }
     }
 
+    [Tooltip("SpriteRenderer that represents the filled color of the health bar")]
+    public SpriteRenderer healthBarFill;
+
     [Header("Slot")]
     public Slot slot;
 
@@ -64,7 +67,7 @@ public class Car : LoopTransform, IEntity
         if(GameController.Instance != null && GameController.Instance.CurrentState != GameController.GameState.Gameplay)
             return;
 
-        if(Input.GetButtonDown("Fire1")) {
+        if(Input.GetButton("Fire1")) {
             if(slot != null)
                 slot.Use();
             else
@@ -82,17 +85,25 @@ public class Car : LoopTransform, IEntity
 
     public void OnUpdateHealth() {
 
-        // Destroys the car and the cars following it if health reaches 0.
-        if(Health <= 0.0f) {
+        // Updates the health bar.
+        healthBarFill.transform.localScale = new Vector3((float)Health / 100.0f, 1.0f, 1.0f);
 
-            // Kills the next car.
+        if(Health <= 0.0f) {
+            Die();
+            return;
+        }
+
+    }
+
+    // Destroys the car and the cars following it if health reaches 0.
+    public void Die() {
+
+        // Kills the next car.
             if(nextCar != null)
                 nextCar.Damage(nextCar.Health);
 
             // Destroy this car.
             Destroy(gameObject);
-
-        }
 
     }
 
