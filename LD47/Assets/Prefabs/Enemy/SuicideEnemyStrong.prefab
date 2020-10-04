@@ -85,11 +85,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  killValue: 100
+  killValue: 200
   damageEffectDuration: 0.2
   deathEffect: {fileID: 8309959938779204406, guid: 430ef12d41f281c44a2625a9a30a9c56, type: 3}
-  collisionDamage: 25
-  velocity: 1
+  collisionDamage: 75
+  velocity: 0.8
   enemyAnimator: {fileID: 4743675043459107598}
 --- !u!95 &4743675043459107598
 Animator:

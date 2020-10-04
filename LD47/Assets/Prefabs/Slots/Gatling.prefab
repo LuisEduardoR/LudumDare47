@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845cef7f065b9ea43a7d7269e86561af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayToFire: 0.125
+  delayToFire: 0.1
   bulletSpawn: {fileID: 539100616287169208}
   bulletPrefab: {fileID: 6252170296247199177, guid: b0f02aadb88786e488983aa2416317d4, type: 3}
   shotAudio: {fileID: 5171731316529371163}
