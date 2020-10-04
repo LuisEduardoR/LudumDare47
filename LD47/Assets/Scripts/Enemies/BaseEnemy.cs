@@ -77,7 +77,7 @@ public class BaseEnemy : MonoBehaviour, IEntity
     protected void OnCollisionEnter2D(Collision2D other) {
 
         // If colliding with a player car does damage to it and kills the enemy
-        if(other.transform.tag == "Player") {
+        if(!dead && other.transform.tag == "Player") {
 
             // Player damage.
             IEntity entity = other.gameObject.GetComponent<IEntity>();

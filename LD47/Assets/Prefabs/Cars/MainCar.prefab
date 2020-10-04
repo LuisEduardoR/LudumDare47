@@ -140,7 +140,7 @@ MonoBehaviour:
   deathEffect: {fileID: 8309959938779204406, guid: 430ef12d41f281c44a2625a9a30a9c56, type: 3}
   slot: {fileID: 3276340556780597432}
   slotSpawn: {fileID: 6322040698299588740}
-  angularAcceleration: 480
+  angularAcceleration: 540
   angularDesacceleration: 90
   angularVelocity: 0
   maxAngularVelocity: 180

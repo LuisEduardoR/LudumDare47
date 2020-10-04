@@ -138,8 +138,7 @@ public class GameController : MonoBehaviour
         // Creates the singleton.
         if(Instance != null)
             Debug.LogWarning("More than one instance of singleton found!");
-        else
-            instance = this;
+        instance = this;
 
         // Marks this object to persist through loads.
         DontDestroyOnLoad(gameObject);        
