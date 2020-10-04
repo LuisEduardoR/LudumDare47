@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 6bc51834e064b324d93310273013ac3e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2910323598088949028
+    second: Flamethrower
+  - first:
+      213: 6824603056107053843
+    second: Flame_0
+  - first:
+      213: -4683294985269601323
+    second: Flamethrower_2
+  - first:
+      213: -3286004492041162129
+    second: Flamethrower_3
+  - first:
+      213: 8065568421865031422
+    second: Flamethrower_4
+  - first:
+      213: 1023486505467385981
+    second: Flamethrower_5
+  - first:
+      213: 3154590345846357104
+    second: Flamethrower_6
+  - first:
+      213: 3300524574760673161
+    second: Flamethrower_7
+  - first:
+      213: 3039854732311507891
+    second: Flamethrower_8
+  - first:
+      213: -3565195180161144347
+    second: Flamethrower_9
+  - first:
+      213: 602647981291955268
+    second: Flamethrower_10
+  - first:
+      213: -8542361799143209556
+    second: Flamethrower_11
+  - first:
+      213: -7973989725526608864
+    second: Flamethrower_12
+  - first:
+      213: -4781714194483492031
+    second: Flamethrower_13
+  - first:
+      213: -1129789699683834400
+    second: Flamethrower_14
+  - first:
+      213: 2830899578714677962
+    second: Flamethrower_15
+  - first:
+      213: 1083235422510752962
+    second: Flame_1
+  - first:
+      213: 5060479075910341136
+    second: Flamethrower_17
+  - first:
+      213: 5626145831915469030
+    second: Flamethrower_18
+  - first:
+      213: -7894477806274437760
+    second: Flamethrower_19
+  - first:
+      213: -1581207575078513551
+    second: Flamethrower_20
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Flamethrower
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 496
+        width: 48
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd2b87a6b147c97d0800000000000000
+      internalID: -2910323598088949028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flame_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 317
+        width: 465
+        height: 132
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3136e4c325cd5be50800000000000000
+      internalID: 6824603056107053843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flame_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 59
+        width: 462
+        height: 140
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4afd6a0ec680f00800000000000000
+      internalID: 1083235422510752962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

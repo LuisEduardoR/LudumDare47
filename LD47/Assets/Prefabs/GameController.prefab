@@ -3926,7 +3926,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47fc360bd1d88064fa8713c7eb5e454f, type: 2}
   - {fileID: 11400000, guid: a1d73efe694c88e40b69524e468a57e2, type: 2}
   - {fileID: 11400000, guid: 848c86ee861c97b46ac198e11c7d27d0, type: 2}
-  additionalCars: []
+  - {fileID: 11400000, guid: a2628ab685e797140b640aa1437505cd, type: 2}
   levels:
   - {fileID: 11400000, guid: c8976c7785046504fab1cd06cd7b0387, type: 2}
   - {fileID: 11400000, guid: 39859d1d3d44a9d49bc213b403edf64b, type: 2}

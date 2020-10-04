@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5216b66892af877409d7b4249ab6588a, type: 3}
-  m_Name: Cannon
+  m_Name: Flamethrower
   m_EditorClassIdentifier: 
-  id: cannon
-  price: 50
-  sprite: {fileID: -2337832699058076334, guid: e21916b55923a8341ac0f38915a6d6c7, type: 3}
-  prefab: {fileID: 1194871689422679646, guid: 27b928693921d2d49a5ac2c8405429fa, type: 3}
+  id: flamethrower
+  price: 250
+  sprite: {fileID: -2910323598088949028, guid: 6bc51834e064b324d93310273013ac3e, type: 3}
+  prefab: {fileID: 1194871689422679646, guid: 55aa9452b584ef64d90bab3acd9ac590, type: 3}
