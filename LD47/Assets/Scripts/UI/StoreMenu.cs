@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+using System.Collections.Generic;
+
 using TMPro;
 
 public class StoreMenu : MonoBehaviour
@@ -16,6 +18,12 @@ public class StoreMenu : MonoBehaviour
     [SerializeField] protected Color nonFocusedColor = Color.grey;
     [SerializeField] protected Color nonBoughtColor = Color.black;
 
+    [SerializeField] protected int carPrice = 50;
+
+    [SerializeField] protected string newCarSlot = "none";
+
+    [SerializeField] protected TMP_Text moneyText = null;
+
     [System.Serializable]
     protected class FocusedCarUI {
 
@@ -28,14 +36,21 @@ public class StoreMenu : MonoBehaviour
 
         public Image healthBarFill;
 
-        [HideInInspector] public Vector3 healthBarFillDefaultScale;
-
         public GameObject mainCarOptions;
         public GameObject additionalCarOptions;
         public GameObject buyCarOptions;
 
+        public Button repairButton;
+        public Button upgradeButton;
+        public Button buyButton;
+
+        public TMP_Text repairPriceText;
+        public TMP_Text upgradePriceText;
+        public TMP_Text buyPriceText;
+
         public GameObject mainCarGraphics;
         public GameObject additionalCarGraphics;
+
 
     }
     [SerializeField] FocusedCarUI focusedCarUI = new FocusedCarUI();
@@ -53,11 +68,29 @@ public class StoreMenu : MonoBehaviour
     [SerializeField] SideCarUI leftCarUI = new SideCarUI();
     [SerializeField] SideCarUI rightCarUI = new SideCarUI();
 
-    public void Start() {
+    [SerializeField] protected List<CarUpgrade> carUpgrades = new List<CarUpgrade>();
 
-        // Gets the default helath bar scale.
-        focusedCarUI.healthBarFillDefaultScale = focusedCarUI.healthBarFill.rectTransform.localScale;
+    // Searchs for an upgrade on the list and returns it, returns null if the upgrade wasn't found.
+    protected CarUpgrade GetUpgrade(string slotFitId) {
 
+        foreach(CarUpgrade upgrade in carUpgrades) {
+            if(upgrade.slotFitId == slotFitId)
+                return upgrade;
+        }
+
+        return null;
+
+    }
+
+    // Searchs for an upgrade on the list and returns the next one, returns null if there's no upgrades or the current upgrade wasn't found.
+    protected CarUpgrade GetNextUpgrade(string slotFitId) {
+
+        for(int i = 0; i < carUpgrades.Count - 1; i++) {
+            if(carUpgrades[i].slotFitId == slotFitId)
+                return carUpgrades[i + 1];
+        }
+
+        return null;
     }
 
     public void Show() {
@@ -65,7 +98,7 @@ public class StoreMenu : MonoBehaviour
         currentCar = 1;
         gameObject.SetActive(true);
 
-        UpdateCarUI();
+        UpdateUI();
 
     }
 
@@ -75,21 +108,68 @@ public class StoreMenu : MonoBehaviour
         
     }
 
+    public void Repair() {
+
+        // Gets the price and spends the money.
+        GameController.AdditionalCar car = GameController.Instance.GetAdditionalCar(currentCar - 1);
+        int repairPrice = Mathf.RoundToInt(100 - car.health);
+        GameController.Instance.Money -= repairPrice;
+
+        // Repairs the car.
+        GameController.Instance.RepairCar(currentCar - 1);
+
+        UpdateUI();
+
+    }
+
+    public void Upgrade() {
+        
+        // Gets the upgrade to be made.
+        GameController.AdditionalCar car = GameController.Instance.GetAdditionalCar(currentCar - 1);
+        CarUpgrade upgrade = GetNextUpgrade(car.slotFitId);
+
+        // No upgrades.
+        if(upgrade == null)
+            return;
+
+        // Spends the money.
+        GameController.Instance.Money -= upgrade.price;
+
+        // Gives the upgrade.
+        GameController.Instance.UpgradeCar(currentCar - 1, upgrade.slotFitId);
+
+        UpdateUI();
+
+    }
+
+    public void Buy() {
+
+        // Spends the money.
+        GameController.Instance.Money -= carPrice;
+
+        // Gives the car.
+        GameController.Instance.AddCar(newCarSlot);
+
+        UpdateUI();
+
+    }
+
     public void NextCar() { 
         currentCar++; 
-        UpdateCarUI();
+        UpdateUI();
     }
 
     public void PreviousCar() { 
         currentCar--; 
-        UpdateCarUI();
+        UpdateUI();
     }
 
-    protected void UpdateCarUI() {
+    protected void UpdateUI() {
 
+        moneyText.text = GameController.Instance.Money.ToString();
         UpdateFocusedCarUI();
-        UpdateLeftCar();
-        UpdateRightCar();
+        UpdateLeftCarUI();
+        UpdateRightCarUI();
 
     }
 
@@ -100,8 +180,32 @@ public class StoreMenu : MonoBehaviour
 
         // Sets the selected car UI.
         focusedCarUI.carName.text = focusedCarUI.carNames[currentCar];
+
+        // Checks if the car has been bought. 
+        bool boughtCar = (car != null);
+
+        // Sets the store interaction buttons UI.
+        CarUpgrade currentSlot = (currentCar != 0 && car != null) ? GetUpgrade(car.slotFitId) : null;
+        int repairPrice = (boughtCar) ? Mathf.RoundToInt(100 - car.health) : 0;
+        CarUpgrade upgrade = (currentCar != 0 && car != null) ? GetNextUpgrade(car.slotFitId) : null;
+        int upgradePrice = (upgrade != null) ? upgrade.price : - 100;
+
+        focusedCarUI.repairButton.interactable  = (repairPrice > 0 && repairPrice <= GameController.Instance.Money);
+        focusedCarUI.upgradeButton.interactable = (upgrade != null && upgradePrice <= GameController.Instance.Money);
+        focusedCarUI.buyButton.interactable     = (carPrice <= GameController.Instance.Money);
+
+        focusedCarUI.repairPriceText.text  = (repairPrice > 0) ? repairPrice + "$" : "---";
+        focusedCarUI.upgradePriceText.text = (upgrade != null) ? upgradePrice + "$" : "---";
+        focusedCarUI.buyPriceText.text     = carPrice + "$";;
+
+        focusedCarUI.repairPriceText.color  = (repairPrice <= GameController.Instance.Money)    ? Color.green : Color.red;
+        focusedCarUI.upgradePriceText.color = (upgradePrice <= GameController.Instance.Money)   ? Color.green : Color.red;
+        focusedCarUI.buyPriceText .color    = (carPrice <= GameController.Instance.Money)       ? Color.green : Color.red;
+
+
         // For the main car.
         if(currentCar == 0) {
+
             focusedCarUI.carImage.color = Color.white;
             focusedCarUI.healthBarFill.rectTransform.localScale = Vector3.one;
 
@@ -115,17 +219,17 @@ public class StoreMenu : MonoBehaviour
         // For the additional cars.
         } else {
 
-            // Checks if the car has been bought. 
-            bool boughtCar = (car != null);
-
             // Sets the health bar.
-            Vector3 healthBarFillScale = focusedCarUI.healthBarFillDefaultScale;
-            healthBarFillScale = boughtCar ? new Vector3(car.health / 100.0f, healthBarFillScale.x, healthBarFillScale.y) : new Vector3(0, healthBarFillScale.x, healthBarFillScale.y);
-            focusedCarUI.healthBarFill.rectTransform.localScale = healthBarFillScale;
+           
+            focusedCarUI.healthBarFill.rectTransform.localScale = boughtCar ? new Vector3(car.health / 100.0f, 1, 1) : new Vector3(0, 1, 1);
 
             // Sets the UI.
             focusedCarUI.carImage.color  = boughtCar ? Color.white : nonBoughtColor;
-            focusedCarUI.slotImage.color = boughtCar ? Color.white : nonBoughtColor;
+            Color slotcolor = boughtCar ? Color.white : new Color(0, 0, 0, 0);
+            if(currentSlot == null || currentSlot.slotFitId == "none")
+                slotcolor.a = 0;
+            focusedCarUI.slotImage.color = slotcolor;
+            focusedCarUI.slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;
 
             // Shows the correct car options.
             focusedCarUI.mainCarOptions.SetActive(false);
@@ -145,8 +249,8 @@ public class StoreMenu : MonoBehaviour
     }
 
     // Wrappers
-    protected void UpdateLeftCar() { UpdateSideCar(1); }
-    protected void UpdateRightCar() { UpdateSideCar(-1); }
+    protected void UpdateLeftCarUI() { UpdateSideCar(1); }
+    protected void UpdateRightCarUI() { UpdateSideCar(-1); }
 
     protected void UpdateSideCar(int offset) {
 
@@ -172,15 +276,20 @@ public class StoreMenu : MonoBehaviour
         // For the additional cars.
         } else {
 
-            // Checks if the car has been bought and sets the health bar.
+            // Checks if the car has been bought and sets the upgrades available.
             bool boughtCar = (car != null);
+            CarUpgrade currentSlot = (currentCar != 0 && car != null) ? GetUpgrade(car.slotFitId) : null;
 
             // Sets the UI.
             carImage.color  = boughtCar ? nonFocusedColor : nonBoughtColor;
-            slotImage.color = boughtCar ? nonFocusedColor : nonBoughtColor;
+            Color slotcolor = boughtCar ? nonFocusedColor : new Color(0, 0, 0, 0);
+            if(currentSlot == null || currentSlot.slotFitId == "none")
+                slotcolor.a = 0;
+            slotImage.color = slotcolor;
+            focusedCarUI.slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;
 
             // Shows the correct car graphics and hides invalid cars.
-            bool validCar = (currentCar + offset) >= 0 && (currentCar + offset) < maxAdditionalCars;
+            bool validCar = (currentCar + offset) >= 0 && (currentCar + offset) <= maxAdditionalCars;
             mainCarGraphics.SetActive(false && validCar);
             additionalCarGraphics.SetActive(true && validCar);
 

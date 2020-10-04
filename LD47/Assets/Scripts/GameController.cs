@@ -422,10 +422,20 @@ public class GameController : MonoBehaviour
     }
 
     public void EnterStore() {
-
         currentState = GameState.Store;
         ui.Update(currentState);
+    }
 
+    public void AddCar(string carSlotId) {
+        additionalCars.Add(new AdditionalCar(carSlotId, 100.0f));
+    }
+
+    public void RepairCar(int index) {
+        additionalCars[index].health = 100.0f;
+    }
+
+    public void UpgradeCar(int index, string carSlotId) {
+        additionalCars[index].slotFitId = carSlotId;
     }
 
 }

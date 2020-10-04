@@ -73,8 +73,11 @@ public class Car : LoopTransform, IEntity
         if(Input.GetButton("Fire1")) {
             if(slot != null)
                 slot.Use();
-            else
-                Debug.LogWarning("Attempting to used empty slot at car \"" + transform.name + "\"");
+            else {
+                # if UNITY_EDITOR
+                Debug.Log("Attempting to used empty slot at car \"" + transform.name + "\"");
+                # endif
+            }
         }
 
     }

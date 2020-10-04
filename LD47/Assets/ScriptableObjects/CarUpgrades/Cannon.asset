@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29968bc8ef6e1f4f86585a5228b229b, type: 3}
+  m_Name: Cannon
+  m_EditorClassIdentifier: 
+  slotFitId: cannon
+  price: 50
+  sprite: {fileID: -2337832699058076334, guid: e21916b55923a8341ac0f38915a6d6c7, type: 3}
