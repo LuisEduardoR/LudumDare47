@@ -2,8 +2,6 @@
 
 using TMPro;
 
-using System.Collections.Generic;
-
 public class LoseMenu : MonoBehaviour
 {
     
@@ -31,9 +29,9 @@ public class LoseMenu : MonoBehaviour
         int spentMoney = totalMoney - money;
 
         string finalText = "";
-        finalText += "Total Points: "       + points;
-        finalText += "<br>Total Money: "    + totalMoney;
-        finalText += "<br>Money Spent: "    + spentMoney;
+        finalText += "Total points: "       + points;
+        finalText += "<br>Total money: "    + totalMoney;
+        finalText += "<br>Money spent: "    + spentMoney;
 
         finalStats.text = finalText;
 

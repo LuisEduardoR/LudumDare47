@@ -40,6 +40,8 @@ public class GameController : MonoBehaviour
         [Tooltip("Lose menu's script")]
         public LoseMenu loseMenu;
 
+        [Tooltip("Win menu's script")]
+        public WinMenu winMenu;
 
         // Updates the state of the UI based on GameState.
         public void Update(GameState state) {
@@ -65,6 +67,12 @@ public class GameController : MonoBehaviour
             else
                 loseMenu.Hide();
 
+            // Sets the win menu UI.
+            if (state == GameState.Win) 
+                winMenu.Show();
+            else
+                winMenu.Hide();
+
         }
 
         public void UpdatePoints(int value) {
@@ -75,8 +83,12 @@ public class GameController : MonoBehaviour
             moneyText.text = value.ToString();
         }
 
-        public void UpdateFinalStats(int points, int money) {
+        public void UpdateLoseScreenStats(int points, int money) {
             loseMenu.UpdateFinalStats(points, money);
+        }
+
+        public void UpdateWinScreenStats(int oldPoints, int curPoints, int oldMoney, int curMoney, int level) {
+            winMenu.UpdateFinalStats(oldPoints, curPoints, oldMoney, curMoney, level);
         }
 
     }
@@ -122,6 +134,7 @@ public class GameController : MonoBehaviour
             ui.UpdatePoints(value);
         }
     }
+    private int oldPoints;
 
     [SerializeField] protected int money;
     public int Money {
@@ -131,6 +144,10 @@ public class GameController : MonoBehaviour
             ui.UpdateMoney(value);
         }
     }
+    private int oldMoney;
+
+    // Level
+    protected int currentLevel;
 
     void Start()
     {
@@ -192,6 +209,8 @@ public class GameController : MonoBehaviour
         //additionalCars = new List<AdditionalCar>();
         // TODO: reset cars at start of the game
 
+        currentLevel = 1;
+
     }
 
     // Loads a new scene.
@@ -207,6 +226,10 @@ public class GameController : MonoBehaviour
         currentState = GameState.Gameplay;
         ui.Update(currentState);
         
+        // Saves points and money
+        oldPoints = Points;
+        oldMoney = Money;
+
         // Initializes the enemy spawner.
         EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
         // TODO: multiple levels
@@ -281,7 +304,7 @@ public class GameController : MonoBehaviour
 
     protected IEnumerator LosingGame() {
 
-        // Waits for some time before displaying the scree.
+        // Waits for some time before displaying the screen.
         yield return new WaitForSeconds(2.5f);
 
         DisplayLoseScreen();
@@ -291,8 +314,58 @@ public class GameController : MonoBehaviour
     protected void DisplayLoseScreen() {
 
         Time.timeScale = 0;
-        ui.UpdateFinalStats(Points, Money);
+        ui.UpdateLoseScreenStats(Points, Money);
         ui.Update(currentState);
+
+    }
+
+    public void WinLevel() {
+
+        // Checks if the game was won.
+        StartCoroutine(WinningGame());
+
+    }
+
+    protected IEnumerator WinningGame() {
+
+        bool ended = false;
+        bool won = true;
+
+        while(!ended) {
+
+            // Waits for delay.
+            yield return new WaitForSeconds(2.5f);
+
+            // Ensures the game wasn't lost.
+            if(currentState == GameState.Lose) {
+                ended = true;
+                won = false;
+                continue;
+            }
+
+            // Checks if all enemies have been defeated.
+            BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
+            if(enemies.Length <= 1) {
+                ended = true;
+                won = true;
+                continue;
+            }
+
+        }
+
+        // Displays the win screen if the player won.
+        if(won)
+            DisplayWinScreen();
+
+    }
+
+    protected void DisplayWinScreen() {
+
+        Time.timeScale = 0;
+        ui.UpdateWinScreenStats(oldPoints, Points, oldMoney, Money, currentLevel);
+        currentState = GameState.Win;
+        ui.Update(currentState);
+        currentLevel++;
 
     }
 

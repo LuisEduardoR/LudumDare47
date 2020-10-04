@@ -45,15 +45,13 @@ public class EnemySpawner : MonoBehaviour
 
                 currentWave++;
 
+                // Tells the GameController the player can now win the level
                 if(currentWave >= levelWaves.waves.Count) {
-
-                    // TODO: win the level when out of enemies
-                    Debug.LogWarning("Level won! Resetting...");
-                    currentWave = -1;
+                    GameController.Instance.WinLevel();
                     return;
-                    
                 }
 
+                // Starts the new wave.
                 StartCoroutine(SpawnWave(currentWave));
                 waveTimer = 0.0f;
 
