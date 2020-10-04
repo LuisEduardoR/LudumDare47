@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a049ed387bc8e6c448c5c56a4c624c11, type: 3}
   m_Name: Basic
   m_EditorClassIdentifier: 
-  delayToNext: 7
-  delayBetweenEnemies: 1
+  delayToNext: 15
+  delayBetweenEnemies: 1.25
   enemies:
+  - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
+  - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
+  - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
+  - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
+  - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
   - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
   - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}
   - {fileID: 4039205218095324951, guid: c668aedf653c71b48bd23aca51690504, type: 3}

@@ -30,7 +30,7 @@ public class WinMenu : MonoBehaviour
         winText += "<br>Total points: "     + curPoints;
         winText += "<br>";
         winText += "<br>Money earned: "     + (curMoney - oldMoney);
-        winText += "<br>Total money: "      + curMoney;
+        winText += "<br>Total money: "      + curPoints / 10;
 
         finalLevelStats.text = winText;
 

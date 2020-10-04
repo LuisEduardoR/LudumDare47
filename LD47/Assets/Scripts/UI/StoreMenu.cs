@@ -184,16 +184,22 @@ public class StoreMenu : MonoBehaviour
         // Checks if the car has been bought. 
         bool boughtCar = (car != null);
 
-        // Sets the store interaction buttons UI.
+        // Gets the current slot and upgrades.
         CarUpgrade currentSlot = (currentCar != 0 && car != null) ? GetUpgrade(car.slotFitId) : null;
-        int repairPrice = (boughtCar) ? Mathf.RoundToInt(100 - car.health) : 0;
         CarUpgrade upgrade = (currentCar != 0 && car != null) ? GetNextUpgrade(car.slotFitId) : null;
+
+        Debug.Log("Focused: " + (car != null && currentSlot != null) + " " + ((currentSlot != null) ? currentSlot.slotFitId : "null"));
+
+        // Gets prices.
+        int repairPrice = (boughtCar) ? Mathf.RoundToInt(100 - car.health) : 0;
         int upgradePrice = (upgrade != null) ? upgrade.price : - 100;
 
+        // Sets the store interaction buttons UI.
         focusedCarUI.repairButton.interactable  = (repairPrice > 0 && repairPrice <= GameController.Instance.Money);
         focusedCarUI.upgradeButton.interactable = (upgrade != null && upgradePrice <= GameController.Instance.Money);
         focusedCarUI.buyButton.interactable     = (carPrice <= GameController.Instance.Money);
 
+        // Sets the prices and text colors.
         focusedCarUI.repairPriceText.text  = (repairPrice > 0) ? repairPrice + "$" : "---";
         focusedCarUI.upgradePriceText.text = (upgrade != null) ? upgradePrice + "$" : "---";
         focusedCarUI.buyPriceText.text     = carPrice + "$";;
@@ -228,6 +234,7 @@ public class StoreMenu : MonoBehaviour
             Color slotcolor = boughtCar ? Color.white : new Color(0, 0, 0, 0);
             if(currentSlot == null || currentSlot.slotFitId == "none")
                 slotcolor.a = 0;
+            Debug.Log("checks " + (boughtCar && currentSlot != null));
             focusedCarUI.slotImage.color = slotcolor;
             focusedCarUI.slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;
 
@@ -286,7 +293,7 @@ public class StoreMenu : MonoBehaviour
             if(currentSlot == null || currentSlot.slotFitId == "none")
                 slotcolor.a = 0;
             slotImage.color = slotcolor;
-            focusedCarUI.slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;
+            slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;
 
             // Shows the correct car graphics and hides invalid cars.
             bool validCar = (currentCar + offset) >= 0 && (currentCar + offset) <= maxAdditionalCars;

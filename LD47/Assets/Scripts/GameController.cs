@@ -393,10 +393,9 @@ public class GameController : MonoBehaviour
 
     protected void DisplayWinScreen() {
 
-        // Updates game info.
+        // Updates game.
         Time.timeScale = 0;
         currentState = GameState.Win;
-        currentLevel++;
 
         // Saves info about the train when the game ended.
         // Counts how many cars are alive.
@@ -418,6 +417,9 @@ public class GameController : MonoBehaviour
         // Sets the UI.
         ui.UpdateWinScreenStats(oldPoints, Points, oldMoney, Money, currentLevel);
         ui.Update(currentState);
+
+        // Increases the level.
+        currentLevel++;
 
     }
 
