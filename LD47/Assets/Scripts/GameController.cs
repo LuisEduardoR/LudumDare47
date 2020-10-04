@@ -152,8 +152,7 @@ public class GameController : MonoBehaviour
     }
 
     // Current additional cars info.
-    // TODO: make private after tests.
-    public List<AdditionalCar> additionalCars;
+    private List<AdditionalCar> additionalCars;
 
     // Used to get references to additional car's info.
     public AdditionalCar GetAdditionalCar(int index) {
@@ -227,8 +226,20 @@ public class GameController : MonoBehaviour
                 slotDictionary.Add(fit.id, fit);
             }
         }
+
+        // Creates the additional car list.
+        additionalCars = new List<AdditionalCar>();
         
         ResetGame();
+
+    }
+
+    void Update() {
+
+        if(currentState == GameState.Gameplay || currentState == GameState.Paused) {
+            if(Input.GetButtonDown("Pause"))
+                TogglePause();
+        }
 
     }
 
@@ -406,7 +417,7 @@ public class GameController : MonoBehaviour
 
             // Checks if all enemies have been defeated.
             BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
-            if(enemies.Length <= 0) {
+            if(enemies.Length <= 0 && currentState == GameState.Gameplay) {
                 ended = true;
                 won = true;
                 continue;
