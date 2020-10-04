@@ -105,7 +105,7 @@ public class GameController : MonoBehaviour
     public UI ui;
 
     [System.Serializable]
-    public struct AdditionalCar {
+    public class AdditionalCar {
 
         public string slotFitId;
         public float health;
@@ -131,6 +131,15 @@ public class GameController : MonoBehaviour
     // Current additional cars info.
     // TODO: make private after tests.
     public List<AdditionalCar> additionalCars;
+
+    // Used to get references to additional car's info.
+    public AdditionalCar GetAdditionalCar(int index) {
+        if(additionalCars == null)
+            return null;
+        if(index >= additionalCars.Count || index < 0)
+            return null;
+        return additionalCars[index];
+    }
 
     // List of references to the cars used on the gameplay.
     protected List<Car> gameplayCars;
