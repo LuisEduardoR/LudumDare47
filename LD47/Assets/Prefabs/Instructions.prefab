@@ -266,7 +266,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Left/Right Arrows: move
 
-    Spacebar: Fire
+    Spacebar: fire
 
 
     You need to keep your

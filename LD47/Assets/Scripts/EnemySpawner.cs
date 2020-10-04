@@ -18,6 +18,8 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Height difference from the center the enemies will spawn.")]
     [SerializeField] protected float spawnHeightDifference = 2.5f;
 
+    protected float scalingDificulty;
+
     protected void Awake() {
 
         started = false;
@@ -32,6 +34,21 @@ public class EnemySpawner : MonoBehaviour
         started = true;
         currentWave = -1;
         waveTimer = 0.0f;
+
+        // Calculates the modifier for scalling dificulty.
+        SetScalingDificulty();
+
+    }
+
+    protected void SetScalingDificulty() {
+
+        // Disables scaling dificulty.
+        if(!levelWaves.scalingDifficulty) {
+            scalingDificulty = 1.0f;
+            return;
+        }
+
+        scalingDificulty = 1.0f + GameController.Instance.GetCurrentLevel() * levelWaves.scalingDifficultyModifier;
 
     }
 
@@ -55,7 +72,7 @@ public class EnemySpawner : MonoBehaviour
                 waveTimer = 0.0f;
 
             } else
-                waveTimer += Time.fixedDeltaTime;
+                waveTimer += scalingDificulty * Time.fixedDeltaTime;
 
         }
 
@@ -71,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
         while(currentEnemy < wave.enemies.Count) {
 
             // Waits for the timer and spawns an enemy.
-            timer -= Time.fixedDeltaTime;
+            timer -= scalingDificulty * Time.fixedDeltaTime;
             if(timer <= 0) {
                 SpawnEnemy(wave, currentEnemy);
                 timer = wave.delayBetweenEnemies;

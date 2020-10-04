@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc10e0709b390904896e11b34f066b3d, type: 3}
+  m_Name: Level10
+  m_EditorClassIdentifier: 
+  scalingDifficulty: 0
+  scalingDifficultyModifier: 0.05
+  waves:
+  - {fileID: 11400000, guid: 63261f466732fdc4c8cbcb5a7331ffa2, type: 2}
+  - {fileID: 11400000, guid: 63261f466732fdc4c8cbcb5a7331ffa2, type: 2}
+  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 542abe4a8d3d62d4e8a1dc36df8ccc2c, type: 2}
+  - {fileID: 11400000, guid: 3f9eb77908090b2418928facdab7eea9, type: 2}
+  - {fileID: 11400000, guid: 63261f466732fdc4c8cbcb5a7331ffa2, type: 2}
+  - {fileID: 11400000, guid: 9d13e1de2f5cbc44fbe2a9acc1202e27, type: 2}

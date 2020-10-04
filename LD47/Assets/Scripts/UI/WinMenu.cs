@@ -29,8 +29,8 @@ public class WinMenu : MonoBehaviour
         winText += "Points earned: "        + (curPoints - oldPoints);
         winText += "<br>Total points: "     + curPoints;
         winText += "<br>";
-        winText += "<br>Money earned: "     + (curMoney - oldMoney);
-        winText += "<br>Total money: "      + curPoints / 10;
+        winText += "<br>Money earned: "     + (curMoney - oldMoney) + "$";
+        winText += "<br>Total money: "      + (curPoints / 10) + "$";
 
         finalLevelStats.text = winText;
 

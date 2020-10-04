@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
         }
 
         public void UpdateMoney(int value) {
-            moneyText.text = value.ToString();
+            moneyText.text = value.ToString() + "$";
         }
 
         public void UpdateLoseScreenStats(int points, int money) {
@@ -199,12 +199,17 @@ public class GameController : MonoBehaviour
     // Level
     protected int currentLevel;
 
+    public int GetCurrentLevel() { return currentLevel; }
+
     void Start()
     {
         
         // Creates the singleton.
-        if(Instance != null)
+        if(Instance != null) {
             Debug.LogWarning("More than one instance of singleton found!");
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
 
         // Marks this object to persist through loads.
@@ -212,9 +217,6 @@ public class GameController : MonoBehaviour
 
         // Assigns the function to be called when laoding a scene.
         SceneManager.sceneLoaded += OnLoadScene;
-
-        // Resets time.
-        Time.timeScale = 1;
 
         // Creates the dictionary for slot fits.
         slotDictionary = new Dictionary<string, SlotFitInfo>();
@@ -225,10 +227,7 @@ public class GameController : MonoBehaviour
                 slotDictionary.Add(fit.id, fit);
             }
         }
-
-        currentState = GameState.MainMenu;
-        ui.Update(currentState);
-
+        
         ResetGame();
 
     }
@@ -238,8 +237,7 @@ public class GameController : MonoBehaviour
 
         switch(scene.name) {
             case "MainMenu":
-                SceneManager.sceneLoaded -= OnLoadScene;
-                Destroy(gameObject);
+                ResetGame();
                 break;
             case "Gameplay":
                 StartLevel();
@@ -258,6 +256,14 @@ public class GameController : MonoBehaviour
         currentLevel = 1;
         Points = 0;
         Money = 0;
+
+        // Clears additional cars.
+        additionalCars.Clear();
+
+        // Resets time and sets the UI.
+        Time.timeScale = 1;
+        currentState = GameState.MainMenu;
+        ui.Update(currentState);
 
     }
 

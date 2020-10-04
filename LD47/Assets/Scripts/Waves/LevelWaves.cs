@@ -6,6 +6,9 @@ using System.Collections.Generic;
 public class LevelWaves : ScriptableObject
 {
 
+    public bool scalingDifficulty = false;
+    public float scalingDifficultyModifier = 0.1f;
+
     public List<Wave> waves;
 
 }

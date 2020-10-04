@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Gatling
   m_EditorClassIdentifier: 
   id: gatling
-  price: 50
+  price: 100
   sprite: {fileID: 2870854014123248286, guid: e21916b55923a8341ac0f38915a6d6c7, type: 3}
   prefab: {fileID: 1194871689422679646, guid: bd71e85e621ebf2428ceba114be2527b, type: 3}

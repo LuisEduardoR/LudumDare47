@@ -141,7 +141,7 @@ public class StoreMenu : MonoBehaviour
 
     protected void UpdateUI() {
 
-        moneyText.text = GameController.Instance.Money.ToString();
+        moneyText.text = GameController.Instance.Money.ToString() + "$";
         UpdateFocusedCarUI();
         UpdateLeftCarUI();
         UpdateRightCarUI();
@@ -173,8 +173,8 @@ public class StoreMenu : MonoBehaviour
         focusedCarUI.buyButton.interactable     = (carPrice <= GameController.Instance.Money);
 
         // Sets the prices and text colors.
-        focusedCarUI.repairPriceText.text  = (repairPrice > 0) ? repairPrice + "$" : "---";
-        focusedCarUI.upgradePriceText.text = (upgrade != null) ? upgradePrice + "$" : "---";
+        focusedCarUI.repairPriceText.text  = (repairPrice > 0) ? repairPrice + "$" : "--";
+        focusedCarUI.upgradePriceText.text = (upgrade != null) ? upgradePrice + "$" : "--";
         focusedCarUI.buyPriceText.text     = carPrice + "$";;
 
         focusedCarUI.repairPriceText.color  = (repairPrice <= GameController.Instance.Money)    ? Color.green : Color.red;

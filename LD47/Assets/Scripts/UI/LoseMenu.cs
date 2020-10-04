@@ -30,8 +30,8 @@ public class LoseMenu : MonoBehaviour
 
         string finalText = "";
         finalText += "Total points: "       + points;
-        finalText += "<br>Total money: "    + totalMoney;
-        finalText += "<br>Money spent: "    + spentMoney;
+        finalText += "<br>Total money: "    + totalMoney + "$";
+        finalText += "<br>Money spent: "    + spentMoney + "$";
 
         finalStats.text = finalText;
 
