@@ -275,6 +275,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         currentState = GameState.MainMenu;
         ui.Update(currentState);
+        StopAllCoroutines();
 
     }
 
@@ -370,6 +371,7 @@ public class GameController : MonoBehaviour
         // Loses the game.
         currentState = GameState.Lose;
         ui.gameplay.SetActive(false);
+        StopAllCoroutines();
         StartCoroutine(LosingGame());
 
     }
@@ -436,6 +438,7 @@ public class GameController : MonoBehaviour
         // Updates game.
         Time.timeScale = 0;
         currentState = GameState.Win;
+        StopAllCoroutines();
 
         // Saves info about the train when the game ended.
         // Counts how many cars are alive.
