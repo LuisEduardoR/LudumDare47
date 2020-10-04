@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29968bc8ef6e1f4f86585a5228b229b, type: 3}
-  m_Name: Cannon
+  m_Script: {fileID: 11500000, guid: 5216b66892af877409d7b4249ab6588a, type: 3}
+  m_Name: Gatling
   m_EditorClassIdentifier: 
-  slotFitId: cannon
+  id: gatling
   price: 50
-  sprite: {fileID: -2337832699058076334, guid: e21916b55923a8341ac0f38915a6d6c7, type: 3}
+  sprite: {fileID: 2870854014123248286, guid: e21916b55923a8341ac0f38915a6d6c7, type: 3}
+  prefab: {fileID: 1194871689422679646, guid: bd71e85e621ebf2428ceba114be2527b, type: 3}

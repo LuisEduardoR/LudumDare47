@@ -68,31 +68,6 @@ public class StoreMenu : MonoBehaviour
     [SerializeField] SideCarUI leftCarUI = new SideCarUI();
     [SerializeField] SideCarUI rightCarUI = new SideCarUI();
 
-    [SerializeField] protected List<CarUpgrade> carUpgrades = new List<CarUpgrade>();
-
-    // Searchs for an upgrade on the list and returns it, returns null if the upgrade wasn't found.
-    protected CarUpgrade GetUpgrade(string slotFitId) {
-
-        foreach(CarUpgrade upgrade in carUpgrades) {
-            if(upgrade.slotFitId == slotFitId)
-                return upgrade;
-        }
-
-        return null;
-
-    }
-
-    // Searchs for an upgrade on the list and returns the next one, returns null if there's no upgrades or the current upgrade wasn't found.
-    protected CarUpgrade GetNextUpgrade(string slotFitId) {
-
-        for(int i = 0; i < carUpgrades.Count - 1; i++) {
-            if(carUpgrades[i].slotFitId == slotFitId)
-                return carUpgrades[i + 1];
-        }
-
-        return null;
-    }
-
     public void Show() {
 
         currentCar = 1;
@@ -126,7 +101,7 @@ public class StoreMenu : MonoBehaviour
         
         // Gets the upgrade to be made.
         GameController.AdditionalCar car = GameController.Instance.GetAdditionalCar(currentCar - 1);
-        CarUpgrade upgrade = GetNextUpgrade(car.slotFitId);
+        SlotFitInfo upgrade = GameController.Instance.GetSlotFitUpgrade(car.slotFitId);
 
         // No upgrades.
         if(upgrade == null)
@@ -136,7 +111,7 @@ public class StoreMenu : MonoBehaviour
         GameController.Instance.Money -= upgrade.price;
 
         // Gives the upgrade.
-        GameController.Instance.UpgradeCar(currentCar - 1, upgrade.slotFitId);
+        GameController.Instance.UpgradeCar(currentCar - 1, upgrade.id);
 
         UpdateUI();
 
@@ -185,10 +160,8 @@ public class StoreMenu : MonoBehaviour
         bool boughtCar = (car != null);
 
         // Gets the current slot and upgrades.
-        CarUpgrade currentSlot = (currentCar != 0 && car != null) ? GetUpgrade(car.slotFitId) : null;
-        CarUpgrade upgrade = (currentCar != 0 && car != null) ? GetNextUpgrade(car.slotFitId) : null;
-
-        Debug.Log("Focused: " + (car != null && currentSlot != null) + " " + ((currentSlot != null) ? currentSlot.slotFitId : "null"));
+        SlotFitInfo currentSlot = (currentCar != 0 && car != null) ? GameController.Instance.GetSlotFit(car.slotFitId) : null;
+        SlotFitInfo upgrade = (currentCar != 0 && car != null) ? GameController.Instance.GetSlotFitUpgrade(car.slotFitId) : null;
 
         // Gets prices.
         int repairPrice = (boughtCar) ? Mathf.RoundToInt(100 - car.health) : 0;
@@ -232,9 +205,8 @@ public class StoreMenu : MonoBehaviour
             // Sets the UI.
             focusedCarUI.carImage.color  = boughtCar ? Color.white : nonBoughtColor;
             Color slotcolor = boughtCar ? Color.white : new Color(0, 0, 0, 0);
-            if(currentSlot == null || currentSlot.slotFitId == "none")
+            if(currentSlot == null || currentSlot.id == "none")
                 slotcolor.a = 0;
-            Debug.Log("checks " + (boughtCar && currentSlot != null));
             focusedCarUI.slotImage.color = slotcolor;
             focusedCarUI.slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;
 
@@ -285,12 +257,12 @@ public class StoreMenu : MonoBehaviour
 
             // Checks if the car has been bought and sets the upgrades available.
             bool boughtCar = (car != null);
-            CarUpgrade currentSlot = (currentCar != 0 && car != null) ? GetUpgrade(car.slotFitId) : null;
+            SlotFitInfo currentSlot = (currentCar != 0 && car != null) ? GameController.Instance.GetSlotFit(car.slotFitId) : null;
 
             // Sets the UI.
             carImage.color  = boughtCar ? nonFocusedColor : nonBoughtColor;
             Color slotcolor = boughtCar ? nonFocusedColor : new Color(0, 0, 0, 0);
-            if(currentSlot == null || currentSlot.slotFitId == "none")
+            if(currentSlot == null || currentSlot.id == "none")
                 slotcolor.a = 0;
             slotImage.color = slotcolor;
             slotImage.sprite = (boughtCar && currentSlot != null) ? currentSlot.sprite : null;

@@ -2121,9 +2121,6 @@ MonoBehaviour:
     slotImage: {fileID: 7404400333588214041}
     mainCarGraphics: {fileID: 1147850513671909593}
     additionalCarGraphics: {fileID: 4300834928268660234}
-  carUpgrades:
-  - {fileID: 11400000, guid: 9a37abc511c935d418a3308afb0ce2cb, type: 2}
-  - {fileID: 11400000, guid: e152cf98277a13f499261a4c86dcf26c, type: 2}
 --- !u!1 &1923640992022839599
 GameObject:
   m_ObjectHideFlags: 0
@@ -5808,7 +5805,9 @@ MonoBehaviour:
   mainCarPrefab: {fileID: 6090747987580709681, guid: d557f14f60d9b7846a34a0df9a513658, type: 3}
   additionalCarPrefab: {fileID: 1194871689422679646, guid: b767b269c9344994da8af19e2efb193d, type: 3}
   slotFits:
+  - {fileID: 11400000, guid: 47fc360bd1d88064fa8713c7eb5e454f, type: 2}
   - {fileID: 11400000, guid: a1d73efe694c88e40b69524e468a57e2, type: 2}
+  - {fileID: 11400000, guid: 848c86ee861c97b46ac198e11c7d27d0, type: 2}
   additionalCars: []
   levels:
   - {fileID: 11400000, guid: c8976c7785046504fab1cd06cd7b0387, type: 2}

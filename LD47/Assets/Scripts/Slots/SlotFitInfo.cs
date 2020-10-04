@@ -4,8 +4,8 @@
 public class SlotFitInfo : ScriptableObject
 {
     public string id;
-
-    public int cost;
+    public int price;
+    public Sprite sprite;
     public GameObject prefab;
 
 }

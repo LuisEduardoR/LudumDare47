@@ -128,6 +128,29 @@ public class GameController : MonoBehaviour
     [Tooltip("Slot gameobjects avaliable to be fitted on cars")]
     public List<SlotFitInfo> slotFits;
 
+    // Searchs for an SlotFitInfo on the list and returns it, returns null if it wasn't found.
+    public SlotFitInfo GetSlotFit(string slotFitId) {
+
+        foreach(SlotFitInfo fit in slotFits) {
+            if(fit.id == slotFitId)
+                return fit;
+        }
+
+        return null;
+
+    }
+
+    // Searchs for an SlotFitInfo on the list and returns the next one, returns null if there's no upgrades or the current SlotFitInfo wasn't found.
+    public SlotFitInfo GetSlotFitUpgrade(string slotFitId) {
+
+        for(int i = 0; i < slotFits.Count - 1; i++) {
+            if(slotFits[i].id == slotFitId)
+                return slotFits[i + 1];
+        }
+
+        return null;
+    }
+
     // Current additional cars info.
     // TODO: make private after tests.
     public List<AdditionalCar> additionalCars;
